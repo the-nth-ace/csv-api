@@ -1,14 +1,21 @@
-from re import L
+from typing import List
 from bson.objectid import ObjectId
 from common.database import series_collection
 
 
 def series_helper(series) -> dict:
+    if not series["value"]:
+        value_data = 0
+    elif series["value"] == "":
+        value_data = 0
+    else:
+        value_data = float(series["value"])
     return {
         "id": str(series["_id"]),
         "reference": str(series["reference"]),
         "period": str(series["period"]),
-        "value": float(series["value"]),
+        "value": value_data,
+        "suppressed": str(series["suppressed"]),
         "status": str(series["status"]),
         "unit": str(series["unit"]),
         "magnitude": int(series["magnitude"]),
@@ -35,10 +42,15 @@ async def add_series(series_data: dict) -> dict:
     return series_helper(new_series)
 
 
+async def add_many_series(series: List[dict]):
+    await series_collection.insert_many(series)
+    return {"message": f"{len(series)} collections inserted successfully"}
+
+
 async def retrieve_series_by_id(id: str) -> dict:
     series = await series_collection.find_one({"_id": ObjectId(id)})
     if series:
-        return series
+        return series_helper(series)
 
 
 async def update_series(id: str, data: dict):

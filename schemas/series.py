@@ -1,4 +1,5 @@
 from enum import Enum
+from typing import Any
 from pydantic import BaseModel, Field
 
 
@@ -8,16 +9,12 @@ class StatusEnum(str, Enum):
     C = "C"
 
 
-class Series4Enum(str, Enum):
-    unadjust = "Unadjusted"
-    seasonal = "Seasonally adjusted"
-    trend = "Trend"
-
-
-class SeriesSchema(BaseModel):
+class SeriesResponse(BaseModel):
+    id: Any
     reference: str
     period: str
-    value: float = Field(default=0)
+    value: float
+    suppressed: str
     status: StatusEnum
     unit: str
     magnitude: int
@@ -26,7 +23,23 @@ class SeriesSchema(BaseModel):
     series_title: str
     series_title_2: str
     series_title_3: str
-    series_title_4: Series4Enum
+    series_title_4: str
+
+
+class SeriesSchema(BaseModel):
+    reference: str
+    period: str
+    value: float | None | str = Field(default=0)
+    suppressed: str = Field(default="")
+    status: StatusEnum
+    unit: str
+    magnitude: int
+    subject: str
+    group: str
+    series_title: str
+    series_title_2: str
+    series_title_3: str
+    series_title_4: str
 
     class Config:
         schema_extra = {
@@ -34,6 +47,7 @@ class SeriesSchema(BaseModel):
                 "reference": "BDCQ.SF8RSCA",
                 "period": "2022.03",
                 "value": 728.894,
+                "suppressed": "",
                 "status": "R",
                 "unit": "Dollars",
                 "magnitude": 6,

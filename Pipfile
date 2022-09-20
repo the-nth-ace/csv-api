@@ -9,6 +9,8 @@ uvicorn = "*"
 motor = "*"
 python-dotenv = "*"
 pymongo = {extras = ["srv"], version = "*"}
+python-multipart = "*"
+fastapi-pagination = {extras = ["all"], version = "*"}
 
 [dev-packages]
 black = "*"
