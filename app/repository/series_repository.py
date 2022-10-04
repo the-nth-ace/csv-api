@@ -1,6 +1,6 @@
 from typing import List
 from bson.objectid import ObjectId
-from common.database import series_collection
+from app.common.database import series_collection
 
 
 def series_helper(series) -> dict:

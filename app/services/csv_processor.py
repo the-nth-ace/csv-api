@@ -1,7 +1,7 @@
-import asyncio
+
 from typing import List
-from schemas.series import SeriesSchema
-from repository.series_repository import add_many_series, series_helper
+from app.schemas.series import SeriesSchema
+from app.repository.series_repository import add_many_series, series_helper
 
 
 def get_rows(file):

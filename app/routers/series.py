@@ -1,9 +1,9 @@
 from typing import Any
 from fastapi import APIRouter, Body
-from schemas.series import SeriesResponse, SeriesSchema
+from app.schemas.series import SeriesResponse, SeriesSchema
 from fastapi_pagination import Page, add_pagination, paginate
 
-from services.series import (
+from app.services.series import (
     add_series,
     retrieve_many_series,
     retrieve_series_by_id,

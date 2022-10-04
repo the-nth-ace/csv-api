@@ -1,12 +1,12 @@
 from fastapi.encoders import jsonable_encoder
-from repository.series_repository import (
+from app.repository.series_repository import (
     add_series as add_series_repo,
     retrieve_series,
     retrieve_series_by_id as retrieve_series_by_id_repo,
     delete_series as delete_series_repo,
     update_series as update_series_repo,
 )
-from schemas.series import ErrorResponseModel, ResponseModel, SeriesSchema
+from app.schemas.series import ErrorResponseModel, ResponseModel, SeriesSchema
 
 
 async def add_series(series: SeriesSchema):

@@ -1,5 +1,5 @@
 from fastapi import APIRouter, File, UploadFile
-from services.csv_processor import add_series_from_csv_file
+from app.services.csv_processor import add_series_from_csv_file
 
 router = APIRouter(tags=["Root"])
 

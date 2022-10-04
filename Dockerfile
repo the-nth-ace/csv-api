@@ -1,14 +1,7 @@
-FROM python:3.10-slim
+FROM tiangolo/uvicorn-gunicorn-fastapi:python3.9
 
-ENV PYTHONUNBUFFERED=1
+COPY ./requirements.txt /app/requirements.txt
 
-WORKDIR /app
-COPY Pipfile* ./
+RUN pip install --no-cache-dir --upgrade -r /app/requirements.txt
 
-RUN python -m pip install --upgrade pip && \
-    python -m pip install pipenv && \
-    pipenv requirements > requirements.txt && \
-    pip install -r requirements.txt
-
-COPY . /app
-EXPOSE 8000
+COPY ./app /app/app

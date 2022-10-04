@@ -29,7 +29,7 @@ class SeriesResponse(BaseModel):
 class SeriesSchema(BaseModel):
     reference: str
     period: str
-    value: float | None | str = Field(default=0)
+    value: float = Field(default="")
     suppressed: str = Field(default="")
     status: StatusEnum
     unit: str

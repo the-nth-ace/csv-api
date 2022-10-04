@@ -11,6 +11,7 @@ python-dotenv = "*"
 pymongo = {extras = ["srv"], version = "*"}
 python-multipart = "*"
 fastapi-pagination = {extras = ["all"], version = "*"}
+gunicorn = "*"
 
 [dev-packages]
 black = "*"
